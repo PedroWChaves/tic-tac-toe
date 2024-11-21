@@ -32,6 +32,7 @@ export const Connect = ({ setRoom }) => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        
       }}
     >
       <input onChange={(e) => setCode(e.target.value)} />
