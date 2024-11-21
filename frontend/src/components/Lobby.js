@@ -127,7 +127,12 @@ export const Lobby = ({ room }) => {
         if (verificaVitoria()) {
           trocaJogador();
           setJogando(false);
-          alert('Jogador ' + simboloAtual + ' venceu!');
+          if(simboloAtual ==='X'){
+            titleRef.current.innerHTML = 'Parabéns: X ganhou!'
+          }else{
+            titleRef.current.innerHTML = 'Parabéns: O ganhou!'
+          }
+         
         }
       } else {
         alert('Este espaço não está disponível');
@@ -139,6 +144,7 @@ export const Lobby = ({ room }) => {
     setJogando(true);
     setJogo(jogoInicial);
     setSimboloAtual('X');
+    titleRef.current.innerHTML = 'Jogo da velha'
     document.querySelectorAll('.casa').forEach((casa) => {
       casa.classList.remove('cross', 'circle');
     });
