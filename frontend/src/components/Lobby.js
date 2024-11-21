@@ -135,7 +135,7 @@ export const Lobby = ({ room }) => {
          
         }
       } else {
-        alert('Este espaço não está disponível');
+        alert('Este espaço está ocupado!');
       }
     }
   };
