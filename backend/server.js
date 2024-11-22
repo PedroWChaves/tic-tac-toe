@@ -45,8 +45,8 @@ io.on("connection", (socket) => {
     console.log(rooms);
 
     socket.join(code);
-    socket.emit("update-room", { code, players: rooms[code] });
-    socket.to(code).emit("update-room", { code, players: rooms[code] });
+    // socket.emit("update-room", { code, players: rooms[code] });
+    io.to(code).emit("update-room", { code, players: rooms[code] });
   });
 
   // remove o usuário da sala ao desconectar
@@ -62,6 +62,33 @@ io.on("connection", (socket) => {
       }
     });
   });
+
+  socket.on("move", (data) => {
+    console.log(data);
+    Object.keys(rooms).forEach((code) => {
+      if (rooms[code].includes(socket.id)) {
+        socket.to(code).emit("move", data);
+      }
+    });
+  });
+
+  socket.on("start-game", () => {
+    const num = Math.round(Math.random());
+    Object.keys(rooms).forEach((code) => {
+      if (rooms[code].includes(socket.id)) {
+        io.to(rooms[code][0]).emit("init", {
+          simbolo: "X",
+          jogando: num === 0,
+        });
+        io.to(rooms[code][1]).emit("init", {
+          simbolo: "O",
+          jogando: num === 1,
+        });
+      }
+    });
+  });
 });
 
-http.listen(8080, () => console.log("listening on http://localhost:8080"));
+http.listen(8080, "0.0.0.0", () =>
+  console.log("listening on http://localhost:8080")
+);

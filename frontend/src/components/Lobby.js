@@ -12,9 +12,8 @@ export const Lobby = ({ room }) => {
           <div class="loader"></div>
         </>
       ) : (
-        <></>
+        <Tictactoe />
       )}
-      <Tictactoe />
     </div>
   );
 };

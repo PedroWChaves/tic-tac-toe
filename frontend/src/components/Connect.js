@@ -1,11 +1,9 @@
-import { io } from "socket.io-client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../Context/Socket";
-
-const socket = io("http://localhost:8080");
 
 export const Connect = ({ setRoom }) => {
   const [code, setCode] = useState("");
+  const socket = useContext(SocketContext);
 
   useEffect(() => {
     socket.on("update-room", (data) => {
@@ -27,29 +25,27 @@ export const Connect = ({ setRoom }) => {
   };
 
   return (
-    <SocketContext.Provider socket={socket}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          minHeight: "100vh",
-        }}
-      >
-        <button className="button" onClick={createRoom}>
-          Criar Sala
-        </button>
-        <p className="texto">Código:</p>
-        <input
-          className="roomInput"
-          onChange={(e) => setCode(e.target.value)}
-          placeholder="AB1234"
-        />
-        <button className="button" onClick={joinRoom}>
-          Entrar
-        </button>
-      </div>
-    </SocketContext.Provider>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
+      <button className="button" onClick={createRoom}>
+        Criar Sala
+      </button>
+      <p className="texto">Código:</p>
+      <input
+        className="roomInput"
+        onChange={(e) => setCode(e.target.value)}
+        placeholder="AB1234"
+      />
+      <button className="button" onClick={joinRoom}>
+        Entrar
+      </button>
+    </div>
   );
 };
