@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { SocketContext } from "../Context/Socket";
 
 const jogoInicial = [
   ["", "", ""],
@@ -32,6 +33,7 @@ export const Tictactoe = () => {
   const [simboloAtual, setSimboloAtual] = useState("X");
   const [jogando, setJogando] = useState(true);
   const [title, setTitle] = useState("Jogo da Velha");
+  const socket = useContext(SocketContext);
 
   const verificaVitoria = () => {
     //linhas
