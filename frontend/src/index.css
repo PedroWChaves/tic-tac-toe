@@ -12,27 +12,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.texto{
+
+.texto {
   color: white;
 }
+
 .titulo {
   text-align: center;
 }
-.container{
+
+.container {
   text-align: center;
 }
-.titulo{
-  margin-top: 50px;
+
+.titulo {
+  margin-top: 20px;
   color: white;
   font-size: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.buttonReset{
+
+.buttonReset {
   width: 250px;
   height: 100px;
-  border:none;
+  border: none;
   outline: none;
   cursor: pointer;
   border-radius: 50px;
@@ -43,7 +48,11 @@ code {
   margin-bottom: 50px;
 }
 
-.casa{
+.buttonReset:hover:not([disabled]) {
+  filter: brightness(125%);
+}
+
+.casa {
   display: flex;
   height: 180px;
   width: 180px;
@@ -51,27 +60,55 @@ code {
   border: 4px solid #0f1b21;
   border-radius: 12px;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
-.tabu{
+.casa:disabled {
+  opacity: 0.7;
+}
+
+.casa:hover:not([disabled]) {
+  filter: brightness(125%);
+}
+
+.tabu {
   height: 600px;
   width: 564px;
   display: flex;
-  margin:auto;
+  margin: auto;
 }
 
 .cross {
-  color: #02afb2; 
-  font-size: 80px; 
+  color: #02afb2;
+  font-size: 80px;
   margin: auto;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .circle {
-  color:  #26ffcb;
+  color: #26ffcb;
   font-size: 80px;
   font-weight: bold;
+}
+
+.loader {
+  border: 8px solid #0f1b21;
+  border-top: 8px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
